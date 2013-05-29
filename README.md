@@ -19,36 +19,36 @@ You always have access to the all calculations that you have preformed previousl
 
 ### Quickstart
 Quickstart examples:
-Add: ´´23.45+678.9´´
-Subtract: ´´123-34.56´´
-Multiply: ´´2*3´´
-Divide: ´´42/2´´
-Power: ´´23^4´´
-Defining constant: ´´a=4´´
-Using constant: ´´(5^2)*pi´´
-Using builtin function: ´´sin(2)´´
-Defining function: ´´add(a,b) = a+b´´
+Add: ´´´23.45+678.9´´´
+Subtract: ´´´123-34.56´´´
+Multiply: ´´´2*3´´´
+Divide: ´´´42/2´´´
+Power: ´´´23^4´´´
+Defining constant: ´´´a=4´´´
+Using constant: ´´´(5^2)*pi´´´
+Using builtin function: ´´´sin(2)´´´
+Defining function: ´´´add(a,b) = a+b´´´
 
 ### Operators
 The klak operators are: 
-- ´´+´´ Used for addition (34+567.8). 
-- ´´-´´ Used for subtraction (54-32.1).
-- ´´*´´ Used for multiplication (12*34.5).
-- ´´/´´ Used for division (76/54).
-- ´´^´´ Used for power (2^3).
+- ´´´+´´´ Used for addition (34+567.8). 
+- ´´´-´´´ Used for subtraction (54-32.1).
+- ´´´*´´´ Used for multiplication (12*34.5).
+- ´´´/´´´ Used for division (76/54).
+- ´´´^´´´ Used for power (2^3).
 
 ### Builtins
 Klak has some built in functions:
 #### Logarithms
-    ´´ln(x)´´ Returns the natural logarithm (base e) of the argument x.
-    ´´log(x)´´ Returns the base 10 logarithm  of the argument x.
+    ´´´ln(x)´´´ Returns the natural logarithm (base e) of the argument x.
+    ´´´log(x)´´´ Returns the base 10 logarithm  of the argument x.
 #### Trig
-    ´´sin(x)´´ Returns the sine part of the angle x (x is in radians).
-    ´´cos(x)´´ Returns the cosine part of the angle x (x is in radians)
-    ´´tan(x)´´ Returns the tangent given the angle x (x is in radians)
+    ´´´sin(x)´´´ Returns the sine part of the angle x (x is in radians).
+    ´´´cos(x)´´´ Returns the cosine part of the angle x (x is in radians)
+    ´´´tan(x)´´´ Returns the tangent given the angle x (x is in radians)
 
 ### Constants
-Klak lets you define constants that you can use in calculations. Simply type the name of the constant you wish to define followed by the ´´=´´ character and then the numerical value that you want the name to represent:
+Klak lets you define constants that you can use in calculations. Simply type the name of the constant you wish to define followed by the ´´´=´´´ character and then the numerical value that you want the name to represent:
 
     myPi = 3.14
 
@@ -56,7 +56,7 @@ You can also use the result of calculations to define constants:
 
     myPi = 22/7
 
-The constant ´´ans´´ is automatically defined as the result of the latest successful calculation.
+The constant ´´´ans´´´ is automatically defined as the result of the latest successful calculation.
 
     1+2
     3
