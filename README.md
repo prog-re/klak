@@ -19,15 +19,15 @@ You always have access to the all calculations that you have preformed previousl
 
 ### Quickstart
 Quickstart examples:
-Add: ´´´23.45+678.9´´´
-Subtract: ´´´123-34.56´´´
-Multiply: ´´´2*3´´´
-Divide: ´´´42/2´´´
-Power: ´´´23^4´´´
-Defining constant: ´´´a=4´´´
-Using constant: ´´´(5^2)*pi´´´
-Using builtin function: ´´´sin(2)´´´
-Defining function: ´´´add(a,b) = a+b´´´
+- Add: ```23.45+678.9```
+- Subtract: ´´´123-34.56´´´
+- Multiply: ´´´2*3´´´
+- Divide: ´´´42/2´´´
+- Power: ´´´23^4´´´
+- Defining constant: ´´´a=4´´´
+- Using constant: ´´´(5^2)*pi´´´
+- Using builtin function: ´´´sin(2)´´´
+- Defining function: ´´´add(a,b) = a+b´´´
 
 ### Operators
 The klak operators are: 
