@@ -39,9 +39,11 @@ The klak operators are:
 
 ### Builtins
 Klak has some built in functions:
+
 #### Logarithms
 - ```ln(x)``` Returns the natural logarithm (base e) of the argument x.
 - ```log(x)``` Returns the base 10 logarithm  of the argument x.
+
 #### Trig
 - ```sin(x)``` Returns the sine part of the angle x (x is in radians).
 - ```cos(x)``` Returns the cosine part of the angle x (x is in radians)
