@@ -40,12 +40,12 @@ The klak operators are:
 ### Builtins
 Klak has some built in functions:
 #### Logarithms
-    ```ln(x)``` Returns the natural logarithm (base e) of the argument x.
-    ```log(x)``` Returns the base 10 logarithm  of the argument x.
+- ```ln(x)``` Returns the natural logarithm (base e) of the argument x.
+- ```log(x)``` Returns the base 10 logarithm  of the argument x.
 #### Trig
-    ```sin(x)``` Returns the sine part of the angle x (x is in radians).
-    ```cos(x)``` Returns the cosine part of the angle x (x is in radians)
-    ```tan(x)``` Returns the tangent given the angle x (x is in radians)
+- ```sin(x)``` Returns the sine part of the angle x (x is in radians).
+- ```cos(x)``` Returns the cosine part of the angle x (x is in radians)
+- ```tan(x)``` Returns the tangent given the angle x (x is in radians)
 
 ### Constants
 Klak lets you define constants that you can use in calculations. Simply type the name of the constant you wish to define followed by the ```=``` character and then the numerical value that you want the name to represent:
