@@ -2,7 +2,16 @@
 ## What is this?
 Klak is intended to replace the desktop calculator that comes with your operating system. Typically this calculator will try to look and feel like a real desk calculator while Klak will focus on actually calculating things. Klak is not intended to be a replacement for advanced math programs like Maple or Matlab. If you need to do anything more complex than simple arithmetic you should use one of those systems instead. 
 ## How to run Klak
+Klak has been tested only with python 2.7 on Windows and Linux.
 
+    python /path/to/klak.py
+
+On linux (at least on Debian-derived distributions) it is possible to create a file named 'klak' with the contents
+
+    #!/bin/sh
+    exec python /path/to/klak.py
+
+and place this file on /usr/bin/. Don't forget to make it executable (```chmod 777 klak```).
 ## How to use Klak
         
 ### Numbers
