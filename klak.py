@@ -18,27 +18,33 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Klak.  If not, see <http://www.gnu.org/licenses/>.
 
+""" This module is the main of the Klak app. It provides the GUI and calculator history.
+"""
+
 from Tkinter import *
 from calc import *
 import unicodedata
 import platform
 import klakicon
 
-class klakapp_tk(Tk):
+
+class KlakApp_tk(Tk):
     def __init__(self,parent):
         Tk.__init__(self,parent)
         self.parent = parent
         self.initialize()
+        #Calc provides the calculator functionality (see calc.py) 
         self.calc = Calc()
         self.history = []
         self.last = ''
         self.historyidx = -1
 
     def initialize(self):
+        #Sets up the GUI
         self.textarea = Text(self,wrap="word")
         self.textarea.pack(side="left",fill="both",expand="yes")
         self.textarea.focus_set()
-        self.textarea.insert(END,"""Klak - The simple calculator - (C) 2013 Martin Karlsson 
+        self.textarea.insert(END,"""Klak - The simple calculator - Copyright (C) 2013 Martin Karlsson 
 This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'. This is free software, and you are welcome to redistribute it under certain conditions. For help with how to use this program type 'help'\n""")    
         self.scrollbar = Scrollbar(self)
         self.scrollbar.pack(side="right",fill="y")
@@ -46,21 +52,13 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
         self.textarea.config(yscrollcommand=self.scrollbar.set)
         self.textarea.bind("<Key>",lambda ev:self.handleKeys(ev))
 
-    def calcColWidth(self):
-        prew = self.textarea.winfo_width()
-        self.textarea.config(width=self.width+1)
-        self.update_idletasks() 
-        aftw = self.textarea.winfo_width()
-        self.textarea.config(width=self.width)
-        self.colwidth = aftw-prew
-        self.colwidth /= 2
-        print(self.colwidth)
-
+     
     def handleKeys(self,ev):
+        """ This should be bound to the key events of the text area to
+        provide decimal point exchange and history on the arrow keys.
+        """
         kk = ev.keycode
-        print(self.winfo_width())
-        print(ev.keysym),
-        print(ev.keycode)
+        # One way for Windows...
         if platform.system() == "Windows":
             try:
                 {13:self.calcLine,
@@ -77,6 +75,7 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
                           110:"break"}[kk]
             except:
                 pass
+        #...and another for Linux 
         else:
             try:
                 {91:self.insPoint,
@@ -99,6 +98,7 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
         return retval
 
     def historyUp(self):
+        """ Get next history item """
         if self.historyidx < len(self.history):
             self.historyidx+=1
         if self.historyidx == 0:
@@ -107,6 +107,7 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
             self.historyInsert(self.history[-self.historyidx])
 
     def historyDown(self):
+        """ Get previous history item """
         if self.historyidx > -1:
             self.historyidx-=1
         if self.historyidx == -1:
@@ -118,11 +119,19 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
 
 
     def historyInsert(self,histStr):
+        """ Insert history item in the text area """
         lc = self.textarea.index(INSERT).split('.')
         self.textarea.delete(lc[0]+'.0',lc[0]+'.'+END)
         self.textarea.insert(INSERT,histStr)    
 
+    def insPoint(self):
+        """ Insert decimal point (.) at the curent cursor pos """
+        self.textarea.insert(INSERT,".")
+        return 'break'
+
+
     def calcLine(self):
+        """ Evaluate the current line with calc (calc.py) and put the result on the next line"""
         lc = self.textarea.index(INSERT).split('.')
         endline = self.textarea.index(END).split('.')
         line = self.textarea.get(lc[0]+'.0',lc[0]+'.'+END)
@@ -147,16 +156,16 @@ This program comes with ABSOLUTELY NO WARRANTY; for details type 'help warranty'
             self.textarea.see(END)
         return 'break'
 
-    def insPoint(self):
-        self.textarea.insert(INSERT,".")
-        return 'break'
 
 if __name__ == "__main__":
-    app = klakapp_tk(None)
+    #Create GUI and set the icon
+    app = KlakApp_tk(None)
     try:
         app.iconbitmap(klakicon.gettempfilename())
     except:
         pass
     app.title('Klak')
+    #Run!
     app.mainloop()
+    #Remove temp file on exit
     klakicon.removetempfile()

@@ -17,6 +17,9 @@
 #    along with Klak.  If not, see <http://www.gnu.org/licenses/>.
 
 
+""" This module provides the predefined constants to Klak
+"""
+
 from decimal import *
 
 Consts = {

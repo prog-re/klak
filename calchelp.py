@@ -16,8 +16,15 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Klak.  If not, see <http://www.gnu.org/licenses/>.
 
+""" This module provides the help texts for Klak through the getHelp fuction
+"""
 
 def getHelp(inp):
+    """ Return strings of help text based in the input (the input string should be on the form "help helptopic")
+    """
+    
+    # Use the text "help" as a point of split: This should give a list 
+    # with an empty string on pos 0 and the help topic on pos 1
     topic = (inp.split('help'))[1]
     if topic == '':
         return """Help is available for:

@@ -16,6 +16,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Klak.  If not, see <http://www.gnu.org/licenses/>.
 
+""" This module encodes the gui app icon into sourcecode 
+"""
 
 import base64
 import os

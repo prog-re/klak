@@ -52,4 +52,5 @@ t('unbalanced () in function def','unfunc(a,b=a*b','Error: Only alphanumericals 
 t('Empty argument name','unfun(a,,b)=a+b','Error: Argument name cannot be empty')
 t('Number as argument name','unfun(1,b)=a+b','Error: Numbers may not be used as argument names')
 t('Non alphanum in argument name','unfun(a.c,b)=a+b','Error: Only alphanumericals may be used in argument names')
+t('Start with operator','-4+(-3+4)','-3')
 print('All tests pass!')

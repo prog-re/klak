@@ -17,14 +17,32 @@
 #    along with Klak.  If not, see <http://www.gnu.org/licenses/>.
 
 
+""" The parser takes a legal expresion string and tranforms it into an expression
+"""
+
+
 from re import *
 import expr
 
-#The parser takes a legal expresion string and tranforms it into an expression
 
+def parse(expstr):
+    """ Parse the expression string into a expression tree. Example:
+    "a+b*c" becomes ['+','a',['*','b','c']] 
+    """
+    #First remove all whitespace
+    expstr = ''.join([c for c in expstr if c not in ' \t'])
+    #Then exchange the built in function strings with their one-character operator 
+    expstr = funcOpExchange(expstr)
+    if balanced(expstr):
+        #Then split on the one-char operators recursively
+        return opsplit(expstr)
+    else:
+        return 'Error: Unbalanced parentheses'
 
 
 def balanced(expstr):
+    """ Check if a string has balance with the parentesises 
+    """
     pc = 0
     for c in expstr:
         if c == '(':
@@ -38,8 +56,10 @@ def balanced(expstr):
     else:
         return False
 
-#Exchange built in functions (sin,log etc) for the single char operators 
+
 def funcOpExchange(expstr):
+    """ Exchange built in functions (sin,log etc) for the single char operators  
+    """
     funcOpDict = expr.getFuncOpDict() 
     for funcstr in funcOpDict:
         idx = expstr.find(funcstr)
@@ -67,14 +87,17 @@ def funcOpExchange(expstr):
                 expstr = start+funcOpDict[funcstr].join(args)+funcOpExchange(end)
     return expstr
 
-#Split the expression string into lists of the form ['op','expstr1',expstr2]
-#do this recursively untill no more splits are possible (return the string itself)
 def opsplit(expstr):
+    """ Split the expression string into lists of the form ['op','expstr1',expstr2]
+    do this recursively untill no more splits are possible (return the string itself)
+    """
+
+    #ops are the one char operators (sorted on precidence)
     ops = expr.getOps()
-    if expstr[0] in ops:
-        expstr = '0'+expstr
+    #Remove outer parentesis if we have them
     if expstr[0] == '(' and expstr[-1] == ')' and balanced(expstr[1:-1]):
         expstr = expstr[1:-1]
+    #Add a '0' to the beginning of the string if we start with an operator
     if expstr[0] in ops:
         expstr = '0'+expstr
     for op in ops:
@@ -82,14 +105,17 @@ def opsplit(expstr):
         cc = len(expstr)-1
         revexpstr = list(expstr)
         revexpstr.reverse()
+        #Search for the operator backwards (to preserve operator presidence)
         for c in revexpstr:
             if c == '(':
                 pc += 1
             elif c == ')':
                 pc -= 1
             if c == op and pc == 0:
+                #Build the tree recursively
                 return [op,opsplit(expstr[:cc]),opsplit(expstr[cc+1:])]
             cc -=1
+    #if we find something that looks like a function, parse it separately 
     if funcpattern(expstr):
         fnamestr = funcname(expstr)
         fargs = funcargs(expstr)
@@ -98,12 +124,16 @@ def opsplit(expstr):
     return expstr
         
 def funcpattern(funcstr):
+    """ Returns true if the string looks like a function
+    """
     m = match('.*\(.*\)',funcstr)
     if m and m.start() == 0 and m.end() == len(funcstr):
         return True
     return False
 
 def funcargs(funcstr):
+    """ Extract the function arguments
+    """
     ps = funcstr.find('(')
     argstr = funcstr[ps+1:-1]
     pc = 0
@@ -123,16 +153,11 @@ def funcargs(funcstr):
     return arglist
 
 def funcname(funcstr):
+    """ Extract the function name
+    """
     ps = funcstr.find('(')
     return funcstr[:ps]
 
-def parse(expstr):
-    expstr = ''.join([c for c in expstr if c not in ' \t'])
-    expstr = funcOpExchange(expstr)
-    if balanced(expstr):
-        return opsplit(expstr)
-    else:
-        return 'Error: Unbalanced parentheses'
 
 if __name__ == '__main__':
     print(balanced('((()())))(()()((()))'))
