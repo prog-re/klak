@@ -138,6 +138,13 @@ class Div(Expr):
         else:
             return ["Division by zero"]
 
+class Mod(Expr):
+    def calc(self,p1,p2):
+        if p2 != 0:
+            return p1%p2
+        else:
+            return ["Division by zero"]
+
 class Pow(Expr):
     def calc(self,p1,p2):
         return pow(p1,p2)
@@ -171,12 +178,13 @@ builtins = {
     '-':(Sub,'sub',2),
     '*':(Mul,'mul',3),
     '/':(Div,'div',4),
-    '^':(Pow,'pow',5),
-    chr(128):(Ln,'ln',6),
-    chr(129):(Log,'log',6),
-    chr(130):(Sin,'sin',6),
-    chr(131):(Cos,'cos',6),
-    chr(132):(Tan,'tan',6)
+    '%':(Mod,'mod',5),
+    '^':(Pow,'pow',6),
+    chr(128):(Ln,'ln',7),
+    chr(129):(Log,'log',7),
+    chr(130):(Sin,'sin',7),
+    chr(131):(Cos,'cos',7),
+    chr(132):(Tan,'tan',7)
     }
 
 
